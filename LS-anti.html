@@ -4,46 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Last Receipt — AI Design War Entry</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #090d16;
+      --card: #131c2e;
+      --border: #24324a;
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.2);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     body {
-      background: #090d16;
-      color: #f8fafc;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at top right, #1a2c47 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100vh;
       padding: 40px 20px;
       line-height: 1.6;
     }
-    .container { max-width: 1100px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 40px; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
     .badge {
       display: inline-block;
-      background: rgba(16, 185, 129, 0.15);
-      color: #10b981;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
       font-weight: 700;
-      margin-bottom: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      letter-spacing: 1px;
       text-transform: uppercase;
+      margin-bottom: 12px;
     }
-    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 8px; }
-    p.subtitle { color: #94a3b8; font-size: 1.1rem; }
-    
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
     .card {
-      background: #131c2e;
-      border: 1px solid #24324a;
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
+
     .card-title {
-      color: #10b981;
-      font-size: 1.2rem;
+      color: var(--emerald);
+      font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 16px;
       display: flex;
@@ -51,88 +90,139 @@
       gap: 8px;
     }
 
-    /* Visual Poster */
+    /* Poster Mockup */
     .poster-box {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      position: relative;
-      border: 1px solid #334155;
-    }
-    .poster-box img {
       width: 100%;
-      height: 380px;
-      object-fit: cover;
-      display: block;
-      opacity: 0.85;
-    }
-    .poster-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
-      padding: 20px;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(145deg, #0e1626, #05080f);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-    .poster-head {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      line-height: 1.1;
-      color: #fff;
-    }
-    .poster-head span { color: #10b981; }
-    .poster-foot {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      background: rgba(0,0,0,0.6);
-      padding: 8px 12px;
-      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Social Post */
-    .insta-box {
-      background: #0b111e;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 16px;
+    .poster-head {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      z-index: 2;
     }
-    .insta-head {
-      padding: 12px 16px;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      color: #94a3b8;
-    }
-    .insta-box img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
+
+    .poster-head span {
+      color: var(--emerald);
       display: block;
     }
-    .insta-meta {
-      padding: 10px 16px;
+
+    .poster-art-center {
+      margin: auto 0;
+      text-align: center;
+      z-index: 2;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .poster-art-center svg {
+      width: 60px;
+      height: 60px;
+      stroke: var(--emerald);
+      fill: none;
+      stroke-width: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .poster-foot {
       font-size: 0.85rem;
-      color: #10b981;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      z-index: 2;
+    }
+
+    /* Social Media Mockup */
+    .insta-box {
+      background: #0b111e;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .insta-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+    }
+
+    .insta-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--emerald), #3b82f6);
+    }
+
+    .insta-square {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(180deg, #141f33 0%, #0c1322 100%);
+      border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .insta-square svg {
+      width: 50px;
+      height: 50px;
+      stroke: var(--emerald);
+      fill: none;
+      stroke-width: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .insta-meta {
+      padding-top: 10px;
+      font-size: 0.85rem;
+      color: var(--emerald);
       font-weight: 700;
     }
 
-    .caption-block {
+    .caption-box {
       background: #090d16;
-      border: 1px solid #24324a;
+      border: 1px solid var(--border);
       padding: 14px;
       border-radius: 8px;
       font-size: 0.95rem;
       color: #cbd5e1;
     }
 
-    /* Lists */
+    /* Info Lists */
     ul { list-style: none; }
-    li { margin-bottom: 14px; }
-    li strong { color: #10b981; display: block; font-size: 0.9rem; margin-bottom: 2px; }
-    li span { color: #e2e8f0; font-size: 0.95rem; }
+    li { margin-bottom: 16px; }
+    li strong {
+      color: var(--emerald);
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    li span {
+      color: #e2e8f0;
+      font-size: 0.95rem;
+    }
 
     @media (max-width: 768px) {
       .grid { grid-template-columns: 1fr; }
@@ -143,83 +233,101 @@
 
   <div class="container">
     <header>
-      <div class="badge">Theme 3: AI Design War</div>
+      <span class="badge">Theme 3: AI Design War</span>
       <h1>Visual Campaign Hub</h1>
       <p class="subtitle">Complete AI-Assisted Visual Campaign Submission</p>
     </header>
 
     <div class="grid">
-      <!-- 1. Poster -->
+      <!-- 01. Poster -->
       <div class="card">
         <div class="card-title">01. Professional Poster (3:4)</div>
         <div class="poster-box">
-          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Editorial Fashion Visual" />
-          <div class="poster-overlay">
-            <div class="poster-head">
-              WEAR THE STORY.<br>
-              <span>NOT THE LANDFILL.</span>
-            </div>
-            <div class="poster-foot">
-              ₹499 cheap fashion costs 7,000L water. Stop the cycle. Choose slow.
-            </div>
+          <div class="poster-head">
+            WEAR THE STORY.<br>
+            <span>NOT THE LANDFILL.</span>
+          </div>
+          <div class="poster-art-center">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <p style="font-size:0.9rem; font-weight: 600;">[Visual Mockup]</p>
+            <p style="font-size:0.8rem; color: var(--text-muted); margin-top: 4px;">
+              Haute couture gown woven entirely from store receipts and plastic waste, unspooling into dry earth.
+            </p>
+          </div>
+          <div class="poster-foot">
+            Each ₹499 impulse outfit costs 7,000L of water. Stop the cycle. Choose slow.
           </div>
         </div>
       </div>
 
-      <!-- 2. Social Media & Caption -->
+      <!-- 02. Social Media Deliverable -->
       <div class="card">
-        <div class="card-title">02. Social Media Deliverable (1:1)</div>
+        <div class="card-title">02. Social Media Post (1:1)</div>
         <div class="insta-box">
           <div class="insta-head">
-            <span><strong>@mindfulcloset.ai</strong></span>
-            <span>Sponsored</span>
+            <div class="insta-avatar"></div>
+            <div>
+              <strong>@mindfulcloset.ai</strong><br>
+              <span style="font-size:0.75rem; color: var(--text-muted);">Sponsored · Awareness Campaign</span>
+            </div>
           </div>
-          <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" alt="Garment Tag Visual" />
+          <div class="insta-square">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            <p style="font-size:0.9rem; font-weight:700; color: #fff;">100% TEMPORARY</p>
+            <p style="font-size:0.8rem; color: var(--text-muted); margin-top:4px;">
+              200 Years in Landfill · Wash Less, Rewear More
+            </p>
+          </div>
           <div class="insta-meta">♥ 1,482 likes</div>
         </div>
 
         <div class="card-title" style="font-size: 1rem; margin-bottom: 8px;">03. Campaign Caption</div>
-        <div class="caption-block">
+        <div class="caption-box">
           That impulse purchase didn't come cheap. Slow fashion is about valuing the resources behind what you wear. Wear it more than 30 times or don't buy it at all. 🧵🌱 #WearTheStory #SlowFashion #ConsciousWardrobe
         </div>
       </div>
     </div>
 
+    <!-- Strategy & AI Workflow -->
     <div class="grid">
-      <!-- Strategy -->
       <div class="card">
         <div class="card-title">// Strategy & Audience</div>
         <ul>
           <li>
-            <strong>CAMPAIGN TAGLINE</strong>
+            <strong>Campaign Tagline</strong>
             <span>"Wear the Story. Not the Landfill."</span>
           </li>
           <li>
-            <strong>TARGET AUDIENCE</strong>
+            <strong>Target Audience</strong>
             <span>Gen-Z & Millennials (ages 18–30) frequently shopping micro-trends & fast-fashion online.</span>
           </li>
           <li>
-            <strong>COMMUNICATION OBJECTIVE</strong>
-            <span>Reveal the environmental toll behind disposable fashion and encourage rewearing habits without guilt-tripping.</span>
+            <strong>Communication Objective</strong>
+            <span>Expose the ecological footprint behind disposable fashion and encourage rewearing habits without guilt-tripping.</span>
           </li>
         </ul>
       </div>
 
-      <!-- AI Workflow -->
       <div class="card">
         <div class="card-title">// AI Workflow & Tools</div>
         <ul>
           <li>
-            <strong>1. GEMINI (CONCEPT & COPY)</strong>
-            <span>Identified core audience insights, created the receipt-to-landfill metaphor, and drafted taglines & captions.</span>
+            <strong>1. Gemini (Strategy & Copywriting)</strong>
+            <span>Developed the "Hidden Receipt" metaphor, drafted taglines, and generated engagement-driven social copy.</span>
           </li>
           <li>
-            <strong>2. MIDJOURNEY / FIREFLY (VISUAL GENERATION)</strong>
-            <span>Crafted high-contrast editorial prompts with strict aspect ratios for poster & social post visuals.</span>
+            <strong>2. Midjourney / Firefly (Visual Engine)</strong>
+            <span>Constructed controlled studio prompts for high-fashion editorial texture and macro clothing-tag imagery.</span>
           </li>
           <li>
-            <strong>3. CANVA / FIGMA (LAYOUT & COMPOSITION)</strong>
-            <span>Arranged typography hierarchy, maintained cohesive dark emerald tones, and finalized formats.</span>
+            <strong>3. Canva / Web Layout (Production)</strong>
+            <span>Engineered typography contrast, negative margins, and unified visual identity for the live campaign dashboard.</span>
           </li>
         </ul>
       </div>
