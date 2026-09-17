@@ -6,319 +6,136 @@
   <title>The Last Receipt — AI Design War Entry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #090d16;
-      --card-bg: rgba(26, 34, 52, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --emerald: #10b981;
-      --emerald-glow: rgba(16, 185, 129, 0.25);
-      --text: #f8fafc;
-      --text-dim: #94a3b8;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: radial-gradient(circle at top right, #132238 0%, var(--bg) 60%);
-      color: var(--text);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      padding: 60px 20px;
+      background: #090d16;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 40px 20px;
       line-height: 1.6;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .container { max-width: 1100px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 40px; }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      text-transform: uppercase;
     }
-
-    header {
-      margin-bottom: 50px;
-      text-align: center;
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 8px; }
+    p.subtitle { color: #94a3b8; font-size: 1.1rem; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+    .card {
+      background: #131c2e;
+      border: 1px solid #24324a;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-
-    .badge-pill {
-      display: inline-flex;
+    .card-title {
+      color: #10b981;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: var(--emerald);
-      padding: 6px 16px;
-      border-radius: 9999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
     }
 
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 10px var(--emerald);
-    }
-
-    header h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-
-    header p {
-      color: var(--text-dim);
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .grid-showcase {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    .grid-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-    }
-
-    .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 28px;
-      position: relative;
+    /* Visual Poster */
+    .poster-box {
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      background: #000;
+      position: relative;
+      border: 1px solid #334155;
     }
-
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 700;
+    .poster-box img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+    }
+    .poster-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
+      padding: 20px;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .poster-head {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.1;
       color: #fff;
     }
-
-    .card-title span {
-      color: var(--emerald);
-    }
-
-    .poster-art {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      background: linear-gradient(145deg, #0e1626, #05080f);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .poster-art::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      left: 10%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
-      filter: blur(40px);
-      pointer-events: none;
-    }
-
-    .poster-headline {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1.05;
-      letter-spacing: -0.5px;
-    }
-
-    .poster-headline span {
-      color: var(--emerald);
-      display: block;
-    }
-
-    .poster-visual {
-      border: 1px dashed rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.02);
-      padding: 24px;
-      text-align: center;
-      margin: auto 0;
-    }
-
-    .poster-visual p {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      margin-top: 6px;
-    }
-
-    .tag-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      background: rgba(255,255,255,0.08);
-      padding: 4px 10px;
-      border-radius: 4px;
-      color: #cbd5e1;
-    }
-
+    .poster-head span { color: #10b981; }
     .poster-foot {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 14px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      background: rgba(0,0,0,0.6);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    /* Social Post */
+    .insta-box {
+      background: #0b111e;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .insta-head {
+      padding: 12px 16px;
+      font-size: 0.85rem;
       display: flex;
       justify-content: space-between;
+      color: #94a3b8;
     }
-
-    .insta-wrapper {
-      background: #0b111e;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .insta-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .insta-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #10b981, #3b82f6);
-    }
-
-    .insta-meta strong {
-      display: block;
-      font-size: 0.85rem;
-    }
-
-    .insta-meta span {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-    }
-
-    .insta-square {
+    .insta-box img {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      background: linear-gradient(180deg, #141f33 0%, #0c1322 100%);
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .insta-meta {
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    .caption-block {
+      background: #090d16;
+      border: 1px solid #24324a;
+      padding: 14px;
       border-radius: 8px;
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .insta-actions {
-      padding: 12px 4px 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--emerald);
-    }
-
-    .copy-block {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 16px;
       font-size: 0.95rem;
       color: #cbd5e1;
     }
 
-    .detail-item {
-      margin-bottom: 20px;
-    }
+    /* Lists */
+    ul { list-style: none; }
+    li { margin-bottom: 14px; }
+    li strong { color: #10b981; display: block; font-size: 0.9rem; margin-bottom: 2px; }
+    li span { color: #e2e8f0; font-size: 0.95rem; }
 
-    .detail-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .detail-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--emerald);
-      font-weight: 600;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .detail-val {
-      color: #e2e8f0;
-      font-size: 0.98rem;
-    }
-
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .step-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      width: 26px;
-      height: 26px;
-      background: var(--emerald-glow);
-      border: 1px solid var(--emerald);
-      color: var(--emerald);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    @media (max-width: 860px) {
-      .grid-showcase {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -326,130 +143,85 @@
 
   <div class="container">
     <header>
-      <div class="badge-pill">
-        <span class="badge-dot"></span>
-        Theme 3: AI Design War
-      </div>
+      <div class="badge">Theme 3: AI Design War</div>
       <h1>Visual Campaign Hub</h1>
-      <p>Turning consumer insight into an AI-powered visual awareness movement.</p>
+      <p class="subtitle">Complete AI-Assisted Visual Campaign Submission</p>
     </header>
 
-    <div class="grid-showcase">
-      <!-- Item 1: Poster -->
-      <div class="glass-card">
-        <div class="card-title">
-          <span>01</span> Professional Poster (3:4)
-        </div>
-        <div class="poster-art">
-          <div class="poster-headline">
-            Wear The Story.
-            <span>Not The Landfill.</span>
-          </div>
-          <div class="poster-visual">
-            <span class="tag-badge">Visual Concept</span>
-            <p>Avant-garde couture gown intricately woven from store receipts & single-use textiles, fraying into dry earth.</p>
-          </div>
-          <div class="poster-foot">
-            <span>Issue No. 03</span>
-            <span>7,000L water per item — Stop the cycle.</span>
+    <div class="grid">
+      <!-- 1. Poster -->
+      <div class="card">
+        <div class="card-title">01. Professional Poster (3:4)</div>
+        <div class="poster-box">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Editorial Fashion Visual" />
+          <div class="poster-overlay">
+            <div class="poster-head">
+              WEAR THE STORY.<br>
+              <span>NOT THE LANDFILL.</span>
+            </div>
+            <div class="poster-foot">
+              ₹499 cheap fashion costs 7,000L water. Stop the cycle. Choose slow.
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Item 2: Social Media Post & Caption -->
-      <div class="glass-card">
-        <div class="card-title">
-          <span>02</span> Social Media Deliverable
-        </div>
-
-        <div class="insta-wrapper">
+      <!-- 2. Social Media & Caption -->
+      <div class="card">
+        <div class="card-title">02. Social Media Deliverable (1:1)</div>
+        <div class="insta-box">
           <div class="insta-head">
-            <div class="insta-avatar"></div>
-            <div class="insta-meta">
-              <strong>@mindfulcloset.ai</strong>
-              <span>Sponsored · Visual Campaign</span>
-            </div>
+            <span><strong>@mindfulcloset.ai</strong></span>
+            <span>Sponsored</span>
           </div>
-          <div class="insta-square">
-            <span class="tag-badge">1:1 Asset Mockup</span>
-            <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 8px;">
-              Macro garment care tag reading: <br><strong>"100% TEMPORARY — 200 YRS IN NATURE"</strong>
-            </p>
-          </div>
-          <div class="insta-actions">
-            ♥ 1,482 likes
-          </div>
+          <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80" alt="Garment Tag Visual" />
+          <div class="insta-meta">♥ 1,482 likes</div>
         </div>
 
-        <div class="card-title" style="margin-top: 10px; font-size: 1rem;">
-          <span>03</span> Campaign Caption
-        </div>
-        <div class="copy-block">
+        <div class="card-title" style="font-size: 1rem; margin-bottom: 8px;">03. Campaign Caption</div>
+        <div class="caption-block">
           That impulse purchase didn't come cheap. Slow fashion is about valuing the resources behind what you wear. Wear it more than 30 times or don't buy it at all. 🧵🌱 #WearTheStory #SlowFashion #ConsciousWardrobe
         </div>
       </div>
     </div>
 
-    <div class="grid-info">
-      <!-- Item 3: Audience & Objective -->
-      <div class="glass-card">
-        <div class="card-title">
-          <span>//</span> Strategic Communication
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Campaign Tagline</span>
-          <div class="detail-val" style="font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;">
-            "Wear the Story. Not the Landfill."
-          </div>
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Target Audience</span>
-          <div class="detail-val">
-            Gen-Z & Millennials (ages 18–30) frequently shopping fast-fashion platforms and micro-trends online.
-          </div>
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Communication Objective</span>
-          <div class="detail-val">
-            Visually unpack the ecological footprint of disposable clothing, moving audiences from impulse buying toward circular wardrobes without preaching.
-          </div>
-        </div>
+    <div class="grid">
+      <!-- Strategy -->
+      <div class="card">
+        <div class="card-title">// Strategy & Audience</div>
+        <ul>
+          <li>
+            <strong>CAMPAIGN TAGLINE</strong>
+            <span>"Wear the Story. Not the Landfill."</span>
+          </li>
+          <li>
+            <strong>TARGET AUDIENCE</strong>
+            <span>Gen-Z & Millennials (ages 18–30) frequently shopping micro-trends & fast-fashion online.</span>
+          </li>
+          <li>
+            <strong>COMMUNICATION OBJECTIVE</strong>
+            <span>Reveal the environmental toll behind disposable fashion and encourage rewearing habits without guilt-tripping.</span>
+          </li>
+        </ul>
       </div>
 
-      <!-- Item 4: AI Tools & Workflow -->
-      <div class="glass-card">
-        <div class="card-title">
-          <span>//</span> AI Workflow & Tools
-        </div>
-
-        <div class="timeline">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div>
-              <strong style="display:block; font-size: 0.95rem;">Gemini (Strategy & Copy)</strong>
-              <span style="font-size: 0.85rem; color: var(--text-dim);">Developed the "Last Receipt" visual metaphor, targeted hooks, and concise social media copy.</span>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div>
-              <strong style="display:block; font-size: 0.95rem;">Midjourney v6 / Firefly (Visual Engine)</strong>
-              <span style="font-size: 0.85rem; color: var(--text-dim);">Generated high-impact cinematic assets using controlled lighting, editorial studio framing, and precise macro prompts.</span>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div>
-              <strong style="display:block; font-size: 0.95rem;">Figma / Canva (Typography & Layout)</strong>
-              <span style="font-size: 0.85rem; color: var(--text-dim);">Assembled typography hierarchy, balanced negative margins, and curated cohesive brand tones across both formats.</span>
-            </div>
-          </div>
-        </div>
+      <!-- AI Workflow -->
+      <div class="card">
+        <div class="card-title">// AI Workflow & Tools</div>
+        <ul>
+          <li>
+            <strong>1. GEMINI (CONCEPT & COPY)</strong>
+            <span>Identified core audience insights, created the receipt-to-landfill metaphor, and drafted taglines & captions.</span>
+          </li>
+          <li>
+            <strong>2. MIDJOURNEY / FIREFLY (VISUAL GENERATION)</strong>
+            <span>Crafted high-contrast editorial prompts with strict aspect ratios for poster & social post visuals.</span>
+          </li>
+          <li>
+            <strong>3. CANVA / FIGMA (LAYOUT & COMPOSITION)</strong>
+            <span>Arranged typography hierarchy, maintained cohesive dark emerald tones, and finalized formats.</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
