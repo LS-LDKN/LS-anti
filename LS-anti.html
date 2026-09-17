@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Design War - Campaign Submission</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 25px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      color: var(--accent-green);
+      text-transform: uppercase;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Poster Mockup */
+    .poster-preview {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(180deg, #1e293b 0%, #090d16 100%);
+      border: 2px dashed #475569;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poster-tagline {
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .poster-tagline span {
+      color: var(--accent-green);
+    }
+
+    .poster-visual-center {
+      text-align: center;
+      margin: auto 0;
+      color: #64748b;
+      border: 1px solid #334155;
+      padding: 20px;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .poster-footer {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid #334155;
+      padding-top: 10px;
+    }
+
+    /* Social Post Mockup */
+    .social-preview {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #111827;
+      border: 2px dashed #475569;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .social-header {
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+
+    .social-center {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.85rem;
+      border: 1px solid #334155;
+      padding: 15px;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .caption-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    .details-list {
+      list-style: none;
+    }
+
+    .details-list li {
+      margin-bottom: 15px;
+    }
+
+    .details-list strong {
+      color: #f1f5f9;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="tag">Theme 3: AI Design War</span>
+      <h1>Visual Campaign Hub</h1>
+      <p>Submission Overview & AI Workflow Design</p>
+    </header>
+
+    <div class="grid-2">
+      <!-- Item 1: Professional Poster -->
+      <div class="card">
+        <h2>1. Professional Poster (3:4)</h2>
+        <div class="poster-preview">
+          <div class="poster-tagline">
+            Wear the Story.<br />
+            <span>Not the Landfill.</span>
+          </div>
+          <div class="poster-visual-center">
+            <strong>[AI Visual Space]</strong><br />
+            Avant-garde haute couture gown woven entirely from faded paper receipts and plastic scraps.
+          </div>
+          <div class="poster-footer">
+            Each ₹499 fast-fashion outfit costs 7,000L of water. Stop the cycle. Choose slow.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Social Media Post & Caption -->
+      <div class="card">
+        <h2>2. Social Media Post (1:1) & Caption</h2>
+        <div class="social-preview">
+          <div class="social-header">
+            <span>@mindfulcloset</span>
+            <span>Sponsored</span>
+          </div>
+          <div class="social-center">
+            <strong>[AI Visual Space]</strong><br />
+            Macro shot of clothing tag labeled: "100% TEMPORARY - 200 YRS IN LANDFILL".
+          </div>
+          <div style="font-size: 0.8rem; color: var(--accent-green);">
+            ♥ 1,248 likes
+          </div>
+        </div>
+
+        <h3>3. Short Caption</h3>
+        <div class="caption-box">
+          That impulse purchase didn't come cheap. Slow fashion is about valuing the resources behind what you wear. Wear it more than 30 times or don't buy it at all. 🧵🌱 #WearTheStory #SlowFashion #ConsciousWardrobe
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="grid-2">
+      <div class="card">
+        <h2>Target Audience & Objective</h2>
+        <ul class="details-list">
+          <li>
+            <strong>Campaign Tagline:</strong>
+            "Wear the Story. Not the Landfill."
+          </li>
+          <li>
+            <strong>Target Audience:</strong>
+            Gen-Z and Millennials (18–30 years) who frequently purchase low-cost fast-fashion clothing online.
+          </li>
+          <li>
+            <strong>Communication Objective:</strong>
+            Expose the hidden ecological price of disposable clothing and prompt a shift toward rewearing and circular fashion without guilt-tripping.
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>AI Tools & Workflow Used</h2>
+        <ul class="details-list">
+          <li>
+            <strong>1. Ideation & Copywriting (Gemini):</strong>
+            Formulated the core concept "The Hidden Receipt", drafted taglines, audience persona, and caption copy.
+          </li>
+          <li>
+            <strong>2. Image Generation (Midjourney / Firefly):</strong>
+            Created visual assets using targeted camera directions (macro clothing tag vs. editorial studio gown).
+          </li>
+          <li>
+            <strong>3. Layout & Assembly (Canva / Figma):</strong>
+            Combined typography, visual elements, negative space alignment, and cohesive color palette for final export.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
